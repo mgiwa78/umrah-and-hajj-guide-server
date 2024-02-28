@@ -49,7 +49,7 @@ export const SignUp__AUTH__POST = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
-      return res.status(401).json({ error: "Email Already in use" });
+      return res.status(401).json({ message: "Email Already in use" });
     }
     const hashedPassword = await Password.toHash(password);
 
@@ -71,7 +71,7 @@ export const SignUp__AUTH__POST = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "An error occurred" });
+    res.status(500).json({ message: "An error occurred" });
   }
 };
 
