@@ -65,10 +65,7 @@ export const SignUp__AUTH__POST = async (req: Request, res: Response) => {
 
     console.log("decoded:", decoded);
 
-    res.json({
-      status: "success",
-      data: { userAuth: userData, userJwt: token },
-    });
+    res.json({ userAuth: userData, userJwt: token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "An error occurred" });
