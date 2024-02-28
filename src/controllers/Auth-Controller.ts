@@ -15,7 +15,7 @@ export const SignIn__AUTH__POST = async (req: Request, res: Response) => {
   try {
     const user: UserDoc = await User.findOne({ email: email });
     if (!user) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
     const verifyPassword = await Password.compare(user.password, password);
