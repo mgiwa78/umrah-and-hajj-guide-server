@@ -7,7 +7,7 @@ import userRouter from "./usersRouter";
 let rootRouter = Router();
 
 rootRouter.get("/", (req, res) => {
-  res.send("Delicioso API is online and running");
+  res.send("Umrah and Hajj guide API is online and running");
 });
 
 rootRouter.use("/auth", authRouter);
