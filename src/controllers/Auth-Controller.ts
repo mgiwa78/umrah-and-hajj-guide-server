@@ -82,11 +82,11 @@ export const Fetch__USER_PROFILE__POST = async (
     const user = await User.findById(userData?.id);
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res.json(user);
   } catch (error) {
-    res.status(401).json({ error: "Invalid token" });
+    res.status(401).json({ message: "Invalid token" });
   }
 };

@@ -52,7 +52,7 @@ const SignUp__AUTH__POST = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const { email, password, fullName } = req.body;
         const existingUser = yield user_1.User.findOne({ email: email });
         if (existingUser) {
-            return res.status(401).json({ error: "Email Already in use" });
+            return res.status(401).json({ message: "Email Already in use" });
         }
         const hashedPassword = yield password_1.Password.toHash(password);
         const user = yield user_1.User.create({
@@ -64,14 +64,11 @@ const SignUp__AUTH__POST = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const token = jsonwebtoken_1.default.sign({ user: userData }, __CONSTANTS__1.JWT_SECRET);
         const decoded = jsonwebtoken_1.default.verify(token, __CONSTANTS__1.JWT_SECRET);
         console.log("decoded:", decoded);
-        res.json({
-            status: "success",
-            data: { userAuth: userData, userJwt: token },
-        });
+        res.json({ userAuth: userData, userJwt: token });
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ error: "An error occurred" });
+        res.status(500).json({ message: "An error occurred" });
     }
 });
 exports.SignUp__AUTH__POST = SignUp__AUTH__POST;
@@ -80,12 +77,12 @@ const Fetch__USER_PROFILE__POST = (req, res) => __awaiter(void 0, void 0, void 0
         const userData = req.user;
         const user = yield user_1.User.findById(userData === null || userData === void 0 ? void 0 : userData.id);
         if (!user) {
-            return res.status(404).json({ error: "User not found" });
+            return res.status(404).json({ message: "User not found" });
         }
         res.json(user);
     }
     catch (error) {
-        res.status(401).json({ error: "Invalid token" });
+        res.status(401).json({ message: "Invalid token" });
     }
 });
 exports.Fetch__USER_PROFILE__POST = Fetch__USER_PROFILE__POST;
