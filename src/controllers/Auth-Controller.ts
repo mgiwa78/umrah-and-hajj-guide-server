@@ -3,7 +3,6 @@ import { User, UserDoc } from "../models/user";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Password } from "../services/password";
 import { JWT_SECRET } from "../__CONSTANTS__";
-import { sendNotification } from "../_utils/notification";
 
 interface DecodedToken extends JwtPayload {
   organization: { organizationId: string };

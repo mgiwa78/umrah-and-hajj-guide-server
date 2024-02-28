@@ -1,7 +1,7 @@
 import { Password } from "../services/password";
 import { JWT_SECRET } from "../__CONSTANTS__";
 import { User } from "../models/user";
-import sendResetPasswordMail from "../services/mail/sendResetPasswordMail";
+// import sendResetPasswordMail from "../services/mail/sendResetPasswordMail";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { CURSOR_FLAGS } from "mongodb";
@@ -17,10 +17,10 @@ export const forgotPasswordController = async (req: Request, res: Response) => {
     }
 
     const resetToken = jwt.sign({ email }, JWT_SECRET, {
-      expiresIn: "1h"
+      expiresIn: "1h",
     });
 
-    const mailResponse = await sendResetPasswordMail(email, resetToken);
+    // const mailResponse = await sendResetPasswordMail(email, resetToken);
 
     res.json({ message: "Reset token sent to your email" });
   } catch (error) {

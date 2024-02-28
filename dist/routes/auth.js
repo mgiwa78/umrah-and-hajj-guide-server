@@ -12,15 +12,11 @@ const validate_request_1 = require("../middleware/validate-request");
 const authRouter = express_1.default.Router();
 authRouter.post("/signin", Auth_Controller_1.SignIn__AUTH__POST);
 authRouter.post("/signup", [
-    (0, express_validator_1.body)("firstName").notEmpty().withMessage("Firstname is required"),
-    (0, express_validator_1.body)("lastName").notEmpty().withMessage("Lastname is required"),
     (0, express_validator_1.body)("email")
         .notEmpty()
         .withMessage("Email is required")
         .isEmail()
-        .withMessage("Invalid email address"),
-    (0, express_validator_1.body)("password").notEmpty().withMessage("Password is required"),
-    (0, express_validator_1.body)("roles").notEmpty().withMessage("User roles is required")
+        .withMessage("Invalid email address")
 ], validate_request_1.ValidateRequest, Auth_Controller_1.SignUp__AUTH__POST);
 authRouter.get("/me", require_auth_1.AuthenticateUser, Auth_Controller_1.Fetch__USER_PROFILE__POST);
 authRouter.post("/forgotPassword", ForgotPassword_Controller_1.forgotPasswordController);
